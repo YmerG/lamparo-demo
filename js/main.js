@@ -17,16 +17,21 @@ const setMenu = open => {
 };
 burger.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
 nav.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('open')) { setMenu(false); burger.focus(); } });
 
 // Ouvert / fermé, à l'heure de la Corse (7 h – 2 h tous les jours, à confirmer)
-const hour = +new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hourCycle: 'h23', timeZone: 'Europe/Paris' }).format(new Date());
-const open = hour >= 7 || hour < 2;
-document.querySelectorAll('[data-status]').forEach(el => {
-  el.textContent = open ? 'Ouvert en ce moment · jusqu’à 2 h' : 'Fermé · ouvre à 7 h';
-  el.classList.toggle('closed', !open);
-});
+const updateStatus = () => {
+  const hour = +new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hourCycle: 'h23', timeZone: 'Europe/Paris' }).format(new Date());
+  const open = hour >= 7 || hour < 2;
+  document.querySelectorAll('[data-status]').forEach(el => {
+    el.textContent = open ? 'Ouvert en ce moment · jusqu’à 2\u00a0h' : 'Fermé · ouvre à 7\u00a0h';
+    el.classList.toggle('closed', !open);
+  });
+};
+updateStatus();
+setInterval(updateStatus, 60000);
 
-// Onglets de la carte (flèches gauche/droite au clavier)
+// Onglets de la carte (flèches, Début et Fin au clavier)
 const tabs = [...document.querySelectorAll('[role="tab"]')];
 const select = tab => {
   tabs.forEach(t => {
@@ -39,9 +44,10 @@ const select = tab => {
 tabs.forEach((tab, i) => {
   tab.addEventListener('click', () => select(tab));
   tab.addEventListener('keydown', e => {
-    const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
-    if (!d) return;
-    const next = tabs[(i + d + tabs.length) % tabs.length];
+    const j = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+    if (j === undefined) return;
+    e.preventDefault();
+    const next = tabs[(j + tabs.length) % tabs.length];
     select(next);
     next.focus();
   });
@@ -52,6 +58,7 @@ document.querySelector('[data-load-map]').addEventListener('click', () => {
   const map = document.getElementById('map');
   map.innerHTML = '<iframe title="Plan d’accès au Lamparo" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=8.7318%2C41.9156%2C8.7438%2C41.9216&amp;layer=mapnik&amp;marker=41.9186%2C8.7378"></iframe>';
   map.classList.add('loaded');
+  map.querySelector('iframe').focus();
 });
 
 // Apparition douce au défilement
