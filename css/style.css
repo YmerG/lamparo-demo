@@ -254,7 +254,6 @@ em { font-family: var(--serif); font-style: italic; }
 .lb-prev { left: calc(50% - 62px); }
 .lb-next { right: calc(50% - 62px); }
 .lb-close { top: 1rem; right: 1rem; }
-html:has(.lightbox[open]) { overflow: hidden; }
 
 /* Infos */
 .infos { padding: clamp(4rem, 9vw, 6rem) var(--pad); max-width: 76rem; margin: 0 auto; }

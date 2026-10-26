@@ -14,6 +14,7 @@
   <meta property="og:locale" content="fr_FR">
   <link rel="preload" href="fonts/playfair-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/booking.css">
   <!-- avant le premier affichage : évite un éclair du mauvais thème ou du contenu sous l'écran d'arrivée -->
   <script>
     document.documentElement.classList.add('js');
@@ -81,7 +82,7 @@
       <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
       <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
     </button>
-    <a class="btn btn-small btn-gold header-call" href="tel:+33495271255" data-i18n="book">Réserver</a>
+    <a class="btn btn-small btn-gold header-call" href="tel:+33495271255" data-book data-i18n="book">Réserver</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span></span></button>
   </header>
 
@@ -94,7 +95,7 @@
         <h1 id="hero-title" class="words">Le Lamparo</h1>
         <p class="hero-lead" data-i18n="heroLead">Brasserie, pizzas &amp; cocktails<br>face à la baie d'Ajaccio</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="tel:+33495271255" data-i18n="heroBook">Réserver une table</a>
+          <a class="btn btn-gold" href="tel:+33495271255" data-book data-i18n="heroBook">Réserver une table</a>
           <a class="btn btn-ghost" href="#carte" data-i18n="heroMenu">Voir la carte</a>
         </div>
         <ul class="hero-facts">
@@ -271,8 +272,9 @@
 
         <div class="card reveal">
           <h3 data-i18n="resaTitle">Réservation</h3>
-          <p data-i18n="resaText">Réservez votre table par téléphone, en terrasse ou en salle.</p>
+          <p data-i18n="resaText">Réservez votre table en ligne ou par téléphone, en terrasse ou en salle.</p>
           <a class="phone" href="tel:+33495271255">04 95 27 12 55</a>
+          <a class="btn btn-small btn-gold" href="tel:+33495271255" data-book data-i18n="resaOnline">Réserver en ligne</a>
           <p class="small" data-i18n="resaNote">Numéro <strong>à confirmer</strong> (deux numéros circulent sur les annuaires).</p>
         </div>
       </div>
@@ -299,12 +301,123 @@
 
   <!-- Barre d'action flottante sur téléphone -->
   <nav class="mobile-bar" aria-label="Actions rapides" data-i18n-label="barLabel">
-    <a href="tel:+33495271255"><span aria-hidden="true">☎</span> <span data-i18n="book">Réserver</span></a>
+    <a href="tel:+33495271255" data-book><span aria-hidden="true">☎</span> <span data-i18n="book">Réserver</span></a>
     <a href="https://www.google.com/maps/search/?api=1&amp;query=Brasserie+Le+Lamparo+1+Boulevard+Pascal+Rossini+Ajaccio" target="_blank" rel="noopener"><span aria-hidden="true">➤</span> <span data-i18n="barMap">Itinéraire</span></a>
     <a href="#carte"><span aria-hidden="true">☰</span> <span data-i18n="barMenu">Carte</span></a>
   </nav>
 
   <a class="to-top" href="#top" aria-label="Revenir en haut de la page" data-i18n-label="toTop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
+
+  <!-- Réservation de DÉMONSTRATION : rien n'est envoyé ni enregistré, tout est effacé à la fermeture -->
+  <dialog class="booking" aria-labelledby="bk-title">
+    <form class="bk" novalidate>
+      <header class="bk-head">
+        <p class="eyebrow" data-i18n="bkEyebrow">Le Lamparo · Ajaccio</p>
+        <h2 id="bk-title" data-i18n="bkTitle">Réserver une table</h2>
+        <p class="bk-demo" role="note" data-i18n="bkDemo"><strong>Démo :</strong> aucune réservation n'est envoyée ni enregistrée.</p>
+        <ol class="bk-steps" aria-label="Étapes de la réservation" data-i18n-label="bkStepsLabel">
+          <li data-i18n="bkS1">Date &amp; heure</li>
+          <li data-i18n="bkS2">Coordonnées</li>
+          <li data-i18n="bkS3">Récapitulatif</li>
+        </ol>
+        <button class="bk-close" type="button" aria-label="Fermer" data-i18n-label="lbClose" data-bk-close>×</button>
+      </header>
+
+      <div class="bk-body">
+        <section class="bk-step" data-step="1" aria-labelledby="bk-h1">
+          <h3 id="bk-h1" tabindex="-1" data-i18n="bkH1">Quand venez-vous&nbsp;?</h3>
+          <div class="bk-cols">
+            <div class="cal">
+              <div class="cal-head">
+                <button class="cal-nav" type="button" data-cal="-1" aria-label="Mois précédent" data-i18n-label="bkPrevMonth">‹</button>
+                <p class="cal-month" id="bk-month" aria-live="polite"></p>
+                <button class="cal-nav" type="button" data-cal="1" aria-label="Mois suivant" data-i18n-label="bkNextMonth">›</button>
+              </div>
+              <div class="cal-grid" id="bk-cal" role="group" aria-labelledby="bk-month" aria-describedby="bk-err-date"></div>
+              <p class="bk-err" id="bk-err-date" hidden></p>
+            </div>
+            <div class="bk-side">
+              <fieldset class="bk-field">
+                <legend data-i18n="bkService">Service</legend>
+                <div class="pills">
+                  <label class="pill"><input type="radio" name="service" value="midi"><span data-i18n="bkLunch">Midi</span></label>
+                  <label class="pill"><input type="radio" name="service" value="soir" checked><span data-i18n="bkDinner">Soir</span></label>
+                </div>
+              </fieldset>
+              <fieldset class="bk-field" aria-describedby="bk-err-slot">
+                <legend data-i18n="bkTime">Heure</legend>
+                <div class="pills slots" id="bk-slots"></div>
+                <p class="bk-err" id="bk-err-slot" hidden></p>
+                <p class="small" data-i18n="bkSlotsNote">Créneaux d'exemple, <strong>à confirmer</strong> avec le restaurant.</p>
+              </fieldset>
+              <div class="bk-field">
+                <label class="bk-label" for="bk-guests" data-i18n="bkGuests">Nombre de personnes</label>
+                <div class="stepper">
+                  <button type="button" data-guests="-1" aria-label="Une personne de moins" data-i18n-label="bkLess">−</button>
+                  <input id="bk-guests" name="guests" type="number" inputmode="numeric" min="1" max="12" value="2">
+                  <button type="button" data-guests="1" aria-label="Une personne de plus" data-i18n-label="bkMore">+</button>
+                </div>
+                <p class="small" data-i18n="bkGroup">Plus de 12 personnes&nbsp;? Appelez-nous.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="bk-step" data-step="2" aria-labelledby="bk-h2" hidden>
+          <h3 id="bk-h2" tabindex="-1" data-i18n="bkH2">Vos coordonnées</h3>
+          <div class="bk-fields">
+            <div class="bk-field">
+              <label class="bk-label" for="bk-name"><span data-i18n="bkName">Nom</span> <span aria-hidden="true">*</span></label>
+              <input id="bk-name" name="name" type="text" autocomplete="name" required maxlength="60" aria-describedby="bk-err-name">
+              <p class="bk-err" id="bk-err-name" hidden></p>
+            </div>
+            <div class="bk-field">
+              <label class="bk-label" for="bk-phone"><span data-i18n="bkPhone">Téléphone</span> <span aria-hidden="true">*</span></label>
+              <input id="bk-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="bk-err-phone">
+              <p class="bk-err" id="bk-err-phone" hidden></p>
+            </div>
+            <div class="bk-field bk-wide">
+              <label class="bk-label" for="bk-email"><span data-i18n="bkEmail">E-mail</span> <span aria-hidden="true">*</span></label>
+              <input id="bk-email" name="email" type="email" autocomplete="email" required maxlength="80" aria-describedby="bk-err-email">
+              <p class="bk-err" id="bk-err-email" hidden></p>
+            </div>
+          </div>
+          <fieldset class="bk-field">
+            <legend data-i18n="bkWishes">Demande particulière (facultatif)</legend>
+            <div class="pills">
+              <label class="pill"><input type="checkbox" name="wish" value="bkW1"><span data-i18n="bkW1">Anniversaire</span></label>
+              <label class="pill"><input type="checkbox" name="wish" value="bkW2"><span data-i18n="bkW2">En terrasse</span></label>
+              <label class="pill"><input type="checkbox" name="wish" value="bkW3"><span data-i18n="bkW3">Chaise bébé</span></label>
+              <label class="pill"><input type="checkbox" name="wish" value="bkW4"><span data-i18n="bkW4">Allergie ou régime</span></label>
+            </div>
+            <label class="bk-label" for="bk-note" data-i18n="bkNote">Précisions</label>
+            <textarea id="bk-note" name="note" rows="3" maxlength="300"></textarea>
+          </fieldset>
+          <p class="small" data-i18n="bkRequired">* champs obligatoires. Rien n'est envoyé&nbsp;: tout est effacé quand vous fermez cette fenêtre.</p>
+        </section>
+
+        <section class="bk-step" data-step="3" aria-labelledby="bk-h3" hidden>
+          <h3 id="bk-h3" tabindex="-1" data-i18n="bkH3">Vérifiez votre réservation</h3>
+          <div class="recap" id="bk-recap"></div>
+        </section>
+
+        <section class="bk-step bk-done" data-step="4" aria-labelledby="bk-h4" hidden>
+          <svg class="bk-check" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29"/><path d="M19 33l9 9 17-19"/></svg>
+          <h3 id="bk-h4" tabindex="-1" data-i18n="bkH4">Merci, c'est noté&nbsp;!</h3>
+          <p class="bk-done-text" id="bk-done-text"></p>
+          <p class="bk-demo" data-i18n="bkDoneDemo"><strong>Démo : aucune réservation n'a été envoyée.</strong> Sur le site final, cette demande serait transmise au restaurant. Pour réserver aujourd'hui, appelez le 04&nbsp;95&nbsp;27&nbsp;12&nbsp;55.</p>
+        </section>
+      </div>
+
+      <footer class="bk-foot">
+        <a class="bk-call" href="tel:+33495271255"><span data-i18n="bkCall">ou appelez-nous</span> · 04&nbsp;95&nbsp;27&nbsp;12&nbsp;55</a>
+        <div class="bk-actions">
+          <button class="btn btn-line btn-small" type="button" data-bk-back></button>
+          <button class="btn btn-gold" type="submit" data-bk-next></button>
+        </div>
+      </footer>
+    </form>
+  </dialog>
 
   <!-- Agrandissement des photos (dialog natif : Échap et piège du focus fournis par le navigateur) -->
   <dialog class="lightbox" aria-label="Photo agrandie" data-i18n-label="lbLabel">
@@ -319,5 +432,6 @@
 
   <script src="js/i18n.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/booking.js" defer></script>
 </body>
 </html>

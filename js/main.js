@@ -63,6 +63,7 @@ const setLang = l => {
   updateStatus();
   renderFigures();
   moveInk();
+  document.dispatchEvent(new Event('langchange'));
   if (!reduce) $('main').animate([{ opacity: .35 }, { opacity: 1 }], { duration: 450, easing: 'ease-out' });
 };
 langBtn.addEventListener('click', () => setLang(lang === 'fr' ? 'en' : 'fr'));
