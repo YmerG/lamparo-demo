@@ -14,6 +14,11 @@
   <meta property="og:locale" content="fr_FR">
   <link rel="preload" href="fonts/playfair-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+  <!-- avant le premier affichage : évite un éclair du mauvais thème ou du contenu sous l'écran d'arrivée -->
+  <script>
+    document.documentElement.classList.add('js');
+    document.documentElement.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -48,103 +53,133 @@
   </script>
 </head>
 <body>
-  <a class="skip" href="#contenu">Aller au contenu</a>
+  <!-- Écran d'arrivée : disparaît seul (CSS), même si le JavaScript échoue -->
+  <div class="loader" aria-hidden="true">
+    <span class="loader-lamp"></span>
+    <span class="loader-name">Le Lamparo</span>
+    <span class="loader-sub">Ajaccio</span>
+  </div>
 
-  <div class="demo-banner" role="note">Maquette de démonstration<span class="hide-sm"> · site non officiel · informations à confirmer</span></div>
+  <a class="skip" href="#contenu" data-i18n="skip">Aller au contenu</a>
+
+  <div class="demo-banner" role="note"><span data-i18n="banner">Maquette de démonstration</span><span class="hide-sm" data-i18n="banner2"> · site non officiel · informations à confirmer</span></div>
 
   <header class="header" id="top">
-    <a class="brand" href="#top" aria-label="Le Lamparo, retour en haut">
+    <a class="brand" href="#top" aria-label="Le Lamparo, retour en haut" data-i18n-label="brandLabel">
       <span class="brand-mark" aria-hidden="true"></span>
       <span class="brand-name">Le Lamparo</span>
     </a>
-    <nav class="nav" id="nav" aria-label="Navigation principale">
-      <a href="#carte">La carte</a>
-      <a href="#terrasse">La terrasse</a>
-      <a href="#cocktails">Cocktails</a>
-      <a href="#infos">Horaires & accès</a>
+    <nav class="nav" id="nav" aria-label="Navigation principale" data-i18n-label="navLabel">
+      <a href="#carte" data-i18n="nav1">La carte</a>
+      <a href="#terrasse" data-i18n="nav2">La terrasse</a>
+      <a href="#cocktails" data-i18n="nav3">Cocktails</a>
+      <a href="#galerie" data-i18n="nav4">Galerie</a>
+      <a href="#infos" data-i18n="nav5">Horaires & accès</a>
     </nav>
-    <a class="btn btn-small btn-gold header-call" href="tel:+33495271255">Réserver</a>
+    <button class="icon-btn lang-btn" type="button" lang="en" aria-label="English version" data-lang-toggle>EN</button>
+    <button class="icon-btn theme-btn" type="button" aria-pressed="false" aria-label="Mode sombre" data-i18n-label="theme" data-theme-toggle>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+    </button>
+    <a class="btn btn-small btn-gold header-call" href="tel:+33495271255" data-i18n="book">Réserver</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span></span></button>
   </header>
 
   <main id="contenu">
     <!-- ACCUEIL -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-bg" role="img" aria-label="Terrasse de la brasserie au coucher du soleil, face à la baie d'Ajaccio"></div>
+    <section class="hero" aria-labelledby="hero-title" data-parallax="0.35">
+      <div class="hero-bg" role="img" aria-label="Terrasse de la brasserie au coucher du soleil, face à la baie d'Ajaccio" data-i18n-label="heroImg"></div>
       <div class="hero-content">
-        <p class="eyebrow">Ajaccio · Quartier du Diamant</p>
-        <h1 id="hero-title">Le Lamparo</h1>
-        <p class="hero-lead">Brasserie, pizzas &amp; cocktails<br>face à la baie d'Ajaccio</p>
+        <p class="eyebrow" data-i18n="heroEyebrow">Ajaccio · Quartier du Diamant</p>
+        <h1 id="hero-title" class="words">Le Lamparo</h1>
+        <p class="hero-lead" data-i18n="heroLead">Brasserie, pizzas &amp; cocktails<br>face à la baie d'Ajaccio</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="tel:+33495271255">Réserver une table</a>
-          <a class="btn btn-ghost" href="#carte">Voir la carte</a>
+          <a class="btn btn-gold" href="tel:+33495271255" data-i18n="heroBook">Réserver une table</a>
+          <a class="btn btn-ghost" href="#carte" data-i18n="heroMenu">Voir la carte</a>
         </div>
         <ul class="hero-facts">
           <li><span class="status" data-status>Ouvert tous les jours</span></li>
-          <li>Terrasse vue mer</li>
-          <li>4,2 ★ sur Google · ~1 000 avis</li>
+          <li data-i18n="heroFact2">Terrasse vue mer</li>
+          <li data-i18n="heroFact3">4,2 ★ sur Google · ~1 000 avis</li>
         </ul>
       </div>
+      <a class="scroll-cue" href="#histoire" aria-label="Découvrir le Lamparo" data-i18n-label="scrollCue"><span></span></a>
     </section>
 
     <!-- HISTOIRE -->
-    <section class="intro reveal">
-      <p class="eyebrow">Pourquoi « Lamparo » ?</p>
-      <p class="intro-text">Le <em>lamparo</em>, c'est la lampe que les pêcheurs de Méditerranée allumaient la nuit sur leurs barques. Ici, elle s'allume <em>du café du matin au dernier cocktail</em>, sur une terrasse ouverte sur la mer.</p>
+    <section class="intro reveal" id="histoire">
+      <p class="eyebrow" data-i18n="introEyebrow">Pourquoi « Lamparo » ?</p>
+      <p class="intro-text" data-i18n="introText">Le <em>lamparo</em>, c'est la lampe que les pêcheurs de Méditerranée allumaient la nuit sur leurs barques. Ici, elle s'allume <em>du café du matin au dernier cocktail</em>, sur une terrasse ouverte sur la mer.</p>
       <ul class="pillars">
-        <li><strong>Terrasse vue mer</strong><span>en plein cœur d'Ajaccio</span></li>
-        <li><strong>Pizzas &amp; brasserie</strong><span>midi et soir</span></li>
-        <li><strong>Cocktails</strong><span>jusqu'à 2&nbsp;h</span></li>
-        <li><strong>Menu enfant</strong><span>pour toute la famille</span></li>
+        <li><strong data-i18n="p1">Terrasse vue mer</strong><span data-i18n="p1s">en plein cœur d'Ajaccio</span></li>
+        <li><strong data-i18n="p2">Pizzas &amp; brasserie</strong><span data-i18n="p2s">midi et soir</span></li>
+        <li><strong data-i18n="p3">Cocktails</strong><span data-i18n="p3s">jusqu'à 2&nbsp;h</span></li>
+        <li><strong data-i18n="p4">Menu enfant</strong><span data-i18n="p4s">pour toute la famille</span></li>
       </ul>
+    </section>
+
+    <!-- CHIFFRES -->
+    <section class="figures" aria-label="Le Lamparo en chiffres" data-i18n-label="figLabel">
+      <div class="fig reveal"><p class="fig-num"><span data-count="4.2" data-decimals="1">4,2</span><small>/5</small></p><p data-i18n="fig1">note Google</p></div>
+      <div class="fig reveal"><p class="fig-num"><small>~</small><span data-count="1000">1 000</span></p><p data-i18n="fig2">avis Google</p></div>
+      <div class="fig reveal"><p class="fig-num"><span data-count="7">7</span><small>/7</small></p><p data-i18n="fig3">jours d'ouverture</p></div>
+      <div class="fig reveal"><p class="fig-num"><span data-count="19">19</span><small data-i18n="figH">&nbsp;h</small></p><p data-i18n="fig4">ouvert par jour</p></div>
+      <p class="fig-note small" data-i18n="figNote">Note et nombre d'avis relevés sur la fiche Google en octobre 2026. Horaires <strong>à confirmer</strong>.</p>
     </section>
 
     <!-- CARTE -->
     <section class="menu" id="carte" aria-labelledby="carte-title">
       <div class="section-head reveal">
-        <p class="eyebrow">À table</p>
-        <h2 id="carte-title">La carte</h2>
-        <p class="notice">Carte d'exemple pour la maquette : plats et prix <strong>à confirmer</strong> avec le restaurant.</p>
+        <p class="eyebrow" data-i18n="menuEyebrow">À table</p>
+        <h2 id="carte-title" class="words" data-i18n="menuTitle">La carte</h2>
+        <p class="notice" data-i18n="menuNotice">Carte d'exemple pour la maquette : plats et prix <strong>à confirmer</strong> avec le restaurant.</p>
       </div>
 
-      <div class="menu-tabs" role="tablist" aria-label="Rubriques de la carte">
-        <button role="tab" aria-selected="true" aria-controls="m-pizzas" id="t-pizzas">Pizzas</button>
-        <button role="tab" aria-selected="false" aria-controls="m-partager" id="t-partager" tabindex="-1">À partager</button>
-        <button role="tab" aria-selected="false" aria-controls="m-brasserie" id="t-brasserie" tabindex="-1">Brasserie</button>
-        <button role="tab" aria-selected="false" aria-controls="m-desserts" id="t-desserts" tabindex="-1">Desserts</button>
-        <button role="tab" aria-selected="false" aria-controls="m-enfant" id="t-enfant" tabindex="-1">Enfants</button>
+      <div class="menu-tabs" role="tablist" aria-label="Rubriques de la carte" data-i18n-label="tabsLabel">
+        <span class="tab-ink" aria-hidden="true"></span>
+        <button role="tab" aria-selected="false" aria-controls="m-entrees" id="t-entrees" tabindex="-1" data-i18n="tab1">Entrées</button>
+        <button role="tab" aria-selected="true" aria-controls="m-pizzas" id="t-pizzas" data-i18n="tab2">Pizzas</button>
+        <button role="tab" aria-selected="false" aria-controls="m-plats" id="t-plats" tabindex="-1" data-i18n="tab3">Plats</button>
+        <button role="tab" aria-selected="false" aria-controls="m-desserts" id="t-desserts" tabindex="-1" data-i18n="tab4">Desserts</button>
+        <button role="tab" aria-selected="false" aria-controls="m-boissons" id="t-boissons" tabindex="-1" data-i18n="tab5">Boissons</button>
       </div>
 
-      <div class="menu-body">
-        <div class="menu-photo" style="background-image: url(images/pizza.jpg)" role="img" aria-label="Pizza sortie du four"></div>
+      <div class="menu-body reveal">
+        <div class="menu-photo" style="background-image: url(images/pizza.jpg)" aria-hidden="true"></div>
 
         <div class="menu-panels">
-          <ul class="dishes" role="tabpanel" id="m-pizzas" aria-labelledby="t-pizzas">
-            <li><span class="dish">Margherita</span><span class="price">12 €</span><span class="desc">Tomate, mozzarella fior di latte, basilic frais</span></li>
-            <li><span class="dish">La Corse</span><span class="price">16 €</span><span class="desc">Tomate, coppa, brocciu, olives, huile d'olive de l'île</span></li>
-            <li><span class="dish">La Lamparo</span><span class="price">17 €</span><span class="desc">Fruits de mer, ail, persil, citron</span></li>
-            <li><span class="dish">Quatre fromages</span><span class="price">15 €</span><span class="desc">Mozzarella, gorgonzola, chèvre, tomme corse</span></li>
-            <li><span class="dish">Reine</span><span class="price">14 €</span><span class="desc">Tomate, jambon, champignons, mozzarella</span></li>
+          <ul class="dishes" role="tabpanel" id="m-entrees" aria-labelledby="t-entrees" data-photo="images/tapas.jpg" hidden>
+            <li><span class="dish" data-i18n="e1">Planche corse</span><span class="price">18 €</span><span class="desc" data-i18n="e1d">Charcuterie et fromages de l'île, figues, pain grillé</span></li>
+            <li><span class="dish" data-i18n="e2">Tapas du moment</span><span class="price">9 €</span><span class="desc" data-i18n="e2d">Selon l'arrivage, à partager à l'apéritif</span></li>
+            <li><span class="dish" data-i18n="e3">Poulet frit croustillant</span><span class="price">13 €</span><span class="desc" data-i18n="e3d">Sauce maison</span></li>
+            <li><span class="dish" data-i18n="e4">Salade César</span><span class="price">15 €</span><span class="desc" data-i18n="e4d">Poulet, parmesan, croûtons, sauce César</span></li>
+            <li><span class="dish" data-i18n="e5">Frites maison</span><span class="price">5 €</span><span class="desc" data-i18n="e5d">Fleur de sel</span></li>
           </ul>
-          <ul class="dishes" role="tabpanel" id="m-partager" aria-labelledby="t-partager" hidden>
-            <li><span class="dish">Planche corse</span><span class="price">18 €</span><span class="desc">Charcuterie et fromages de l'île, pain grillé</span></li>
-            <li><span class="dish">Tapas du moment</span><span class="price">9 €</span><span class="desc">Selon l'arrivage, à partager à l'apéritif</span></li>
-            <li><span class="dish">Poulet frit croustillant</span><span class="price">13 €</span><span class="desc">Sauce maison</span></li>
-            <li><span class="dish">Frites maison</span><span class="price">5 €</span><span class="desc">Fleur de sel</span></li>
+          <ul class="dishes" role="tabpanel" id="m-pizzas" aria-labelledby="t-pizzas" data-photo="images/pizza.jpg">
+            <li><span class="dish">Margherita</span><span class="price">12 €</span><span class="desc" data-i18n="z1d">Tomate, mozzarella fior di latte, basilic frais</span></li>
+            <li><span class="dish">La Corse</span><span class="price">16 €</span><span class="desc" data-i18n="z2d">Tomate, coppa, brocciu, olives, huile d'olive de l'île</span></li>
+            <li><span class="dish">La Lamparo</span><span class="price">17 €</span><span class="desc" data-i18n="z3d">Fruits de mer, ail, persil, citron</span></li>
+            <li><span class="dish" data-i18n="z4">Quatre fromages</span><span class="price">15 €</span><span class="desc" data-i18n="z4d">Mozzarella, gorgonzola, chèvre, tomme corse</span></li>
+            <li><span class="dish" data-i18n="z5">Reine</span><span class="price">14 €</span><span class="desc" data-i18n="z5d">Tomate, jambon, champignons, mozzarella</span></li>
           </ul>
-          <ul class="dishes" role="tabpanel" id="m-brasserie" aria-labelledby="t-brasserie" hidden>
-            <li><span class="dish">Poisson du jour</span><span class="price">22 €</span><span class="desc">Légumes de saison, beurre citronné</span></li>
-            <li><span class="dish">Tartare de bœuf</span><span class="price">18 €</span><span class="desc">Préparé à la minute, frites maison</span></li>
-            <li><span class="dish">Burger du Lamparo</span><span class="price">17 €</span><span class="desc">Bœuf, tomme corse, oignons confits</span></li>
-            <li><span class="dish">Salade César</span><span class="price">15 €</span><span class="desc">Poulet, parmesan, croûtons, sauce César</span></li>
+          <ul class="dishes" role="tabpanel" id="m-plats" aria-labelledby="t-plats" data-photo="images/plat.jpg" hidden>
+            <li><span class="dish" data-i18n="b1">Poisson du jour</span><span class="price">22 €</span><span class="desc" data-i18n="b1d">Légumes de saison, beurre citronné</span></li>
+            <li><span class="dish" data-i18n="b2">Tartare de bœuf</span><span class="price">18 €</span><span class="desc" data-i18n="b2d">Préparé à la minute, frites maison</span></li>
+            <li><span class="dish" data-i18n="b3">Burger du Lamparo</span><span class="price">17 €</span><span class="desc" data-i18n="b3d">Bœuf, tomme corse, oignons confits</span></li>
+            <li class="kids"><span class="dish" data-i18n="b4">Menu enfant</span><span class="price">12 €</span><span class="desc" data-i18n="b4d">Mini pizza ou poulet frites, dessert, boisson (jusqu'à 10 ans)</span></li>
           </ul>
-          <ul class="dishes" role="tabpanel" id="m-desserts" aria-labelledby="t-desserts" hidden>
-            <li><span class="dish">Fiadone</span><span class="price">7 €</span><span class="desc">Gâteau corse au brocciu et citron</span></li>
-            <li><span class="dish">Tiramisu maison</span><span class="price">7 €</span><span class="desc">Mascarpone, café</span></li>
-            <li><span class="dish">Café gourmand</span><span class="price">9 €</span><span class="desc">Trois douceurs du moment</span></li>
+          <ul class="dishes" role="tabpanel" id="m-desserts" aria-labelledby="t-desserts" data-photo="images/dessert.jpg" hidden>
+            <li><span class="dish">Fiadone</span><span class="price">7 €</span><span class="desc" data-i18n="d1d">Gâteau corse au brocciu et citron</span></li>
+            <li><span class="dish" data-i18n="d2">Tiramisu maison</span><span class="price">7 €</span><span class="desc" data-i18n="d2d">Mascarpone, café</span></li>
+            <li><span class="dish" data-i18n="d3">Café gourmand</span><span class="price">9 €</span><span class="desc" data-i18n="d3d">Trois douceurs du moment</span></li>
+            <li><span class="dish" data-i18n="d4">Glace artisanale</span><span class="price">6 €</span><span class="desc" data-i18n="d4d">Deux boules, parfums du jour</span></li>
           </ul>
-          <ul class="dishes" role="tabpanel" id="m-enfant" aria-labelledby="t-enfant" hidden>
-            <li><span class="dish">Menu enfant</span><span class="price">12 €</span><span class="desc">Mini pizza ou poulet frites, dessert, boisson (jusqu'à 10 ans)</span></li>
+          <ul class="dishes" role="tabpanel" id="m-boissons" aria-labelledby="t-boissons" data-photo="images/cocktail.jpg" hidden>
+            <li><span class="dish" data-i18n="v1">Café, expresso</span><span class="price">2 €</span><span class="desc" data-i18n="v1d">Servi en terrasse dès le matin</span></li>
+            <li><span class="dish" data-i18n="v2">Vin corse au verre</span><span class="price">6 €</span><span class="desc" data-i18n="v2d">Blanc, rosé ou rouge, sélection du moment</span></li>
+            <li><span class="dish" data-i18n="v3">Bière corse pression</span><span class="price">6 €</span><span class="desc" data-i18n="v3d">25 cl</span></li>
+            <li><span class="dish" data-i18n="v4">Jus et sodas</span><span class="price">4 €</span><span class="desc" data-i18n="v4d">Jus de fruits, limonade, sirops</span></li>
+            <li><span class="dish"><a href="#cocktails" data-i18n="v5">Les cocktails du bar →</a></span><span class="desc" data-i18n="v5d">Signature mûre-basilic, spritz, myrte tonic…</span></li>
           </ul>
         </div>
       </div>
@@ -152,113 +187,137 @@
 
     <!-- TERRASSE -->
     <section class="split" id="terrasse" aria-labelledby="terrasse-title">
-      <div class="split-img reveal" style="background-image: url(images/terrasse.jpg)" role="img" aria-label="La terrasse en journée, face à la mer"></div>
+      <div class="split-img parallax reveal" data-parallax style="background-image: url(images/terrasse.jpg)" role="img" aria-label="La terrasse en journée, face à la mer" data-i18n-label="terrImg"></div>
       <div class="split-text reveal">
-        <p class="eyebrow">Terrasse &amp; ambiance</p>
-        <h2 id="terrasse-title">La mer pour horizon</h2>
-        <p>Au pied du Diamant, la terrasse regarde la baie d'Ajaccio. Café en terrasse le matin, déjeuner à l'ombre, apéritif au coucher du soleil, puis musique et cocktails tard dans la soirée.</p>
+        <p class="eyebrow" data-i18n="terrEyebrow">Terrasse &amp; ambiance</p>
+        <h2 id="terrasse-title" class="words" data-i18n="terrTitle">La mer pour horizon</h2>
+        <p data-i18n="terrText">Au pied du Diamant, la terrasse regarde la baie d'Ajaccio. Café en terrasse le matin, déjeuner à l'ombre, apéritif au coucher du soleil, puis musique et cocktails tard dans la soirée.</p>
         <ol class="timeline">
-          <li><time>7 h</time> Petit-déjeuner &amp; café en terrasse</li>
-          <li><time>12 h</time> Déjeuner face à la mer</li>
-          <li><time>18 h</time> Apéritif &amp; coucher de soleil</li>
-          <li><time>2 h</time> Dernier verre</li>
+          <li><time data-i18n="tm1">7 h</time> <span data-i18n="t1">Petit-déjeuner &amp; café en terrasse</span></li>
+          <li><time data-i18n="tm2">12 h</time> <span data-i18n="t2">Déjeuner face à la mer</span></li>
+          <li><time data-i18n="tm3">18 h</time> <span data-i18n="t3">Apéritif &amp; coucher de soleil</span></li>
+          <li><time data-i18n="tm4">2 h</time> <span data-i18n="t4">Dernier verre</span></li>
         </ol>
-        <p class="small">Horaires indicatifs, <strong>à confirmer</strong>.</p>
+        <p class="small" data-i18n="terrNote">Horaires indicatifs, <strong>à confirmer</strong>.</p>
       </div>
     </section>
 
     <!-- COCKTAILS -->
     <section class="cocktails" id="cocktails" aria-labelledby="cocktails-title">
-      <div class="cocktails-img reveal" style="background-image: url(images/cocktail.jpg)" role="img" aria-label="Cocktail mûre-basilic au coucher du soleil"></div>
+      <div class="cocktails-img parallax reveal" data-parallax style="background-image: url(images/cocktail.jpg)" role="img" aria-label="Cocktail mûre-basilic au coucher du soleil" data-i18n-label="cockImg"></div>
       <div class="cocktails-text reveal">
-        <p class="eyebrow">Le bar</p>
-        <h2 id="cocktails-title">Des cocktails qu'on vient chercher</h2>
-        <p>« Excellents cocktails » : c'est ce que Google retient des avis laissés par les clients. Au coucher du soleil, face à la baie, ils prennent tout leur sens.</p>
+        <p class="eyebrow" data-i18n="cockEyebrow">Le bar</p>
+        <h2 id="cocktails-title" class="words" data-i18n="cockTitle">Des cocktails qu'on vient chercher</h2>
+        <p data-i18n="cockText">« Excellents cocktails » : c'est ce que Google retient des avis laissés par les clients. Au coucher du soleil, face à la baie, ils prennent tout leur sens.</p>
         <ul class="drinks">
-          <li class="signature"><span class="dish">Mûre &amp; basilic</span><span class="tag">Signature</span><span class="desc">Fruité, frais, herbacé</span></li>
-          <li><span class="dish">Spritz</span><span class="desc">L'incontournable de l'apéritif</span></li>
-          <li><span class="dish">Myrte tonic</span><span class="desc">Liqueur de myrte corse, tonic, agrumes</span></li>
-          <li><span class="dish">Mojito</span><span class="desc">Menthe fraîche, citron vert</span></li>
-          <li><span class="dish">Sans alcool du moment</span><span class="desc">Pour les petits et les grands</span></li>
+          <li class="signature"><span class="dish" data-i18n="c1">Mûre &amp; basilic</span><span class="tag">Signature</span><span class="desc" data-i18n="c1d">Fruité, frais, herbacé</span></li>
+          <li><span class="dish">Spritz</span><span class="desc" data-i18n="c2d">L'incontournable de l'apéritif</span></li>
+          <li><span class="dish" data-i18n="c3">Myrte tonic</span><span class="desc" data-i18n="c3d">Liqueur de myrte corse, tonic, agrumes</span></li>
+          <li><span class="dish">Mojito</span><span class="desc" data-i18n="c4d">Menthe fraîche, citron vert</span></li>
+          <li><span class="dish" data-i18n="c5">Sans alcool du moment</span><span class="desc" data-i18n="c5d">Pour les petits et les grands</span></li>
         </ul>
-        <p class="small">Carte d'exemple, <strong>à confirmer</strong>. L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p>
+        <p class="small" data-i18n="cockNote">Carte d'exemple, <strong>à confirmer</strong>. L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p>
       </div>
     </section>
 
     <!-- GALERIE -->
-    <section class="gallery" aria-label="Ambiance en images">
-      <div class="g g1 reveal" style="background-image: url(images/tapas.jpg)" role="img" aria-label="Planche de tapas et charcuterie corse"></div>
-      <div class="g g2 reveal" style="background-image: url(images/bar.jpg)" role="img" aria-label="Le bar le soir"></div>
-      <div class="g g3 reveal" role="img" aria-label="La terrasse au coucher du soleil"></div>
+    <section class="gallery-wrap" id="galerie" aria-labelledby="galerie-title">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="galEyebrow">Ambiance</p>
+        <h2 id="galerie-title" class="words" data-i18n="galTitle">En images</h2>
+        <p class="small" data-i18n="galNote">Touchez une photo pour l'agrandir. Images d'illustration, non contractuelles.</p>
+      </div>
+      <ul class="gallery">
+        <li class="g g-wide reveal"><button type="button" data-full="images/hero.jpg"><img src="images/mini/hero.jpg" width="800" height="450" loading="lazy" decoding="async" alt="La terrasse au coucher du soleil, face à la baie" data-i18n-alt="g1"></button></li>
+        <li class="g g-tall reveal"><button type="button" data-full="images/cocktail.jpg"><img src="images/mini/cocktail.jpg" width="640" height="800" loading="lazy" decoding="async" alt="Cocktail mûre-basilic" data-i18n-alt="g2"></button></li>
+        <li class="g reveal"><button type="button" data-full="images/tapas.jpg"><img src="images/mini/tapas.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Planche de charcuterie et fromages corses" data-i18n-alt="g3"></button></li>
+        <li class="g reveal"><button type="button" data-full="images/pizza.jpg"><img src="images/mini/pizza.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Pizza sortie du four" data-i18n-alt="g4"></button></li>
+        <li class="g reveal"><button type="button" data-full="images/bar.jpg"><img src="images/mini/bar.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Le bar le soir" data-i18n-alt="g5"></button></li>
+        <li class="g reveal"><button type="button" data-full="images/terrasse.jpg"><img src="images/mini/terrasse.jpg" width="800" height="500" loading="lazy" decoding="async" alt="La terrasse en journée, face à la mer" data-i18n-alt="g6"></button></li>
+      </ul>
     </section>
 
     <!-- INFOS -->
     <section class="infos" id="infos" aria-labelledby="infos-title">
       <div class="section-head reveal">
-        <p class="eyebrow">Nous trouver</p>
-        <h2 id="infos-title">Horaires &amp; accès</h2>
+        <p class="eyebrow" data-i18n="infEyebrow">Nous trouver</p>
+        <h2 id="infos-title" class="words" data-i18n="infTitle">Horaires &amp; accès</h2>
       </div>
 
       <div class="infos-grid">
         <div class="card reveal">
-          <h3>Horaires</h3>
+          <h3 data-i18n="hoursTitle">Horaires</h3>
           <p class="status-line"><span class="status" data-status>Ouvert tous les jours</span></p>
           <table class="hours">
             <tbody>
-              <tr><th scope="row">Lundi – Dimanche</th><td>7 h – 2 h</td></tr>
+              <tr><th scope="row" data-i18n="days">Lundi – Dimanche</th><td data-i18n="hoursVal">7 h – 2 h</td></tr>
             </tbody>
           </table>
-          <p class="small">Horaires relevés sur les annuaires publics, <strong>à confirmer</strong>.</p>
+          <p class="small" data-i18n="hoursNote">Horaires relevés sur les annuaires publics, <strong>à confirmer</strong>.</p>
         </div>
 
         <div class="card reveal">
-          <h3>Adresse</h3>
+          <h3 data-i18n="addrTitle">Adresse</h3>
           <address>
             Brasserie Le Lamparo<br>
             Diamant, 1 boulevard Pascal Rossini<br>
             20000 Ajaccio
           </address>
           <div class="card-actions">
-            <a class="btn btn-small btn-dark" href="https://www.google.com/maps/search/?api=1&amp;query=Brasserie+Le+Lamparo+1+Boulevard+Pascal+Rossini+Ajaccio" target="_blank" rel="noopener">Itinéraire Google Maps</a>
+            <a class="btn btn-small btn-dark" href="https://www.google.com/maps/search/?api=1&amp;query=Brasserie+Le+Lamparo+1+Boulevard+Pascal+Rossini+Ajaccio" target="_blank" rel="noopener" data-i18n="gmaps">Itinéraire Google Maps</a>
             <a class="btn btn-small btn-line" href="https://waze.com/ul?ll=41.9186,8.7378&amp;navigate=yes" target="_blank" rel="noopener">Waze</a>
           </div>
         </div>
 
         <div class="card reveal">
-          <h3>Réservation</h3>
-          <p>Réservez votre table par téléphone, en terrasse ou en salle.</p>
+          <h3 data-i18n="resaTitle">Réservation</h3>
+          <p data-i18n="resaText">Réservez votre table par téléphone, en terrasse ou en salle.</p>
           <a class="phone" href="tel:+33495271255">04 95 27 12 55</a>
-          <p class="small">Numéro <strong>à confirmer</strong> (deux numéros circulent sur les annuaires).</p>
+          <p class="small" data-i18n="resaNote">Numéro <strong>à confirmer</strong> (deux numéros circulent sur les annuaires).</p>
         </div>
       </div>
 
       <div class="map reveal" id="map">
-        <p>Le plan est affiché par OpenStreetMap. Il ne se charge que si vous le demandez.</p>
-        <button class="btn btn-dark" type="button" data-load-map>Afficher le plan</button>
+        <p data-i18n="mapText">Le plan est affiché par OpenStreetMap. Il ne se charge que si vous le demandez.</p>
+        <button class="btn btn-dark" type="button" data-load-map data-i18n="mapBtn">Afficher le plan</button>
       </div>
     </section>
 
     <!-- APPEL FINAL -->
     <section class="cta">
-      <h2>Une table face à la mer ce soir ?</h2>
-      <a class="btn btn-gold btn-big" href="tel:+33495271255">Appeler le Lamparo</a>
+      <h2 class="words" data-i18n="ctaTitle">Une table face à la mer ce soir&nbsp;?</h2>
+      <a class="btn btn-gold btn-big" href="tel:+33495271255" data-i18n="ctaBtn">Appeler le Lamparo</a>
     </section>
   </main>
 
   <footer class="footer">
     <p class="brand-name">Le Lamparo</p>
-    <p>Diamant, 1 boulevard Pascal Rossini · 20000 Ajaccio · <a href="tel:+33495271255">04 95 27 12 55</a></p>
-    <p class="small"><strong>Maquette de démonstration</strong>, réalisée sans lien avec l'établissement. Contenus et prix d'exemple, à confirmer. Ce site ne dépose aucun cookie et ne collecte aucune donnée.</p>
-    <p class="small">Images d'illustration (non contractuelles). Polices Playfair Display &amp; Inter (licence SIL OFL).</p>
+    <p>Diamant, 1 boulevard Pascal Rossini · 20000&nbsp;Ajaccio · <a href="tel:+33495271255">04 95 27 12 55</a></p>
+    <p class="small" data-i18n="foot1"><strong>Maquette de démonstration</strong>, réalisée sans lien avec l'établissement. Contenus et prix d'exemple, à confirmer. Ce site ne dépose aucun cookie et ne collecte aucune donnée.</p>
+    <p class="small" data-i18n="foot2">Images d'illustration (non contractuelles). Polices Playfair Display &amp; Inter (licence SIL OFL).</p>
   </footer>
 
-  <!-- Barre d'action fixe sur téléphone -->
-  <nav class="mobile-bar" aria-label="Actions rapides">
-    <a href="tel:+33495271255"><span aria-hidden="true">☎</span> Appeler</a>
-    <a href="https://www.google.com/maps/search/?api=1&amp;query=Brasserie+Le+Lamparo+1+Boulevard+Pascal+Rossini+Ajaccio" target="_blank" rel="noopener"><span aria-hidden="true">➤</span> Itinéraire</a>
-    <a href="#carte"><span aria-hidden="true">☰</span> Carte</a>
+  <!-- Barre d'action flottante sur téléphone -->
+  <nav class="mobile-bar" aria-label="Actions rapides" data-i18n-label="barLabel">
+    <a href="tel:+33495271255"><span aria-hidden="true">☎</span> <span data-i18n="book">Réserver</span></a>
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Brasserie+Le+Lamparo+1+Boulevard+Pascal+Rossini+Ajaccio" target="_blank" rel="noopener"><span aria-hidden="true">➤</span> <span data-i18n="barMap">Itinéraire</span></a>
+    <a href="#carte"><span aria-hidden="true">☰</span> <span data-i18n="barMenu">Carte</span></a>
   </nav>
 
+  <a class="to-top" href="#top" aria-label="Revenir en haut de la page" data-i18n-label="toTop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
+
+  <!-- Agrandissement des photos (dialog natif : Échap et piège du focus fournis par le navigateur) -->
+  <dialog class="lightbox" aria-label="Photo agrandie" data-i18n-label="lbLabel">
+    <figure>
+      <img alt="">
+      <figcaption><span class="lb-caption"></span> <span class="lb-count"></span></figcaption>
+    </figure>
+    <button class="lb-btn lb-prev" type="button" aria-label="Photo précédente" data-i18n-label="lbPrev">‹</button>
+    <button class="lb-btn lb-next" type="button" aria-label="Photo suivante" data-i18n-label="lbNext">›</button>
+    <button class="lb-btn lb-close" type="button" autofocus aria-label="Fermer" data-i18n-label="lbClose">×</button>
+  </dialog>
+
+  <script src="js/i18n.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
