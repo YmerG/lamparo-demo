@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brasserie Le Lamparo · Terrasse vue mer, pizzas & cocktails · Ajaccio</title>
+  <meta name="description" content="Brasserie Le Lamparo, quartier du Diamant à Ajaccio : terrasse face à la baie, pizzas, tapas, cuisine de brasserie et cocktails. Ouvert tous les jours jusqu'à 2 h. Réservation par téléphone.">
+  <meta name="robots" content="noindex"><!-- maquette : à retirer à la mise en ligne -->
+  <meta name="theme-color" content="#0f1d2b">
+  <meta property="og:type" content="restaurant">
+  <meta property="og:title" content="Brasserie Le Lamparo · Ajaccio">
+  <meta property="og:description" content="Terrasse face à la baie d'Ajaccio, pizzas, tapas et cocktails. Ouvert tous les jours jusqu'à 2 h.">
+  <meta property="og:image" content="images/hero.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="preload" href="fonts/cormorant-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Brasserie Le Lamparo",
+    "image": "images/hero.jpg",
+    "servesCuisine": ["Brasserie", "Pizzas", "Méditerranéenne", "Cocktails"],
+    "priceRange": "20-30 €",
+    "telephone": "+33495271255",
+    "acceptsReservations": "True",
+    "hasMenu": "#carte",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Diamant, 1 boulevard Pascal Rossini",
+      "postalCode": "20000",
+      "addressLocality": "Ajaccio",
+      "addressRegion": "Corse-du-Sud",
+      "addressCountry": "FR"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 41.9186, "longitude": 8.7378 },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "07:00",
+      "closes": "02:00"
+    }],
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "Terrasse vue mer", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Menu enfant", "value": true }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#carte">Aller au contenu</a>
+
+  <div class="demo-banner" role="note">Maquette de démonstration<span class="hide-sm"> · site non officiel · informations à confirmer</span></div>
+
+  <header class="header" id="top">
+    <a class="brand" href="#top" aria-label="Le Lamparo, retour en haut">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Le Lamparo</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a href="#carte">La carte</a>
+      <a href="#terrasse">La terrasse</a>
+      <a href="#cocktails">Cocktails</a>
+      <a href="#infos">Horaires & accès</a>
+    </nav>
+    <a class="btn btn-small btn-gold header-call" href="tel:+33495271255">Réserver</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span></span></button>
+  </header>
+
+  <main>
+    <!-- ACCUEIL -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" role="img" aria-label="Terrasse de la brasserie au coucher du soleil, face à la baie d'Ajaccio"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Ajaccio · Quartier du Diamant</p>
+        <h1 id="hero-title">Le Lamparo</h1>
+        <p class="hero-lead">Brasserie, pizzas &amp; cocktails<br>face à la baie d'Ajaccio</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="tel:+33495271255">Réserver une table</a>
+          <a class="btn btn-ghost" href="#carte">Voir la carte</a>
+        </div>
+        <ul class="hero-facts">
+          <li><span class="status" data-status>Ouvert tous les jours</span></li>
+          <li>Terrasse vue mer</li>
+          <li>4,2 ★ sur Google · ~1 000 avis</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- HISTOIRE -->
+    <section class="intro reveal">
+      <p class="eyebrow">Pourquoi « Lamparo » ?</p>
+      <p class="intro-text">Le <em>lamparo</em>, c'est la lampe que les pêcheurs de Méditerranée allumaient la nuit sur leurs barques. Ici, elle s'allume <em>du café du matin au dernier cocktail</em>, sur une terrasse ouverte sur la mer.</p>
+      <ul class="pillars">
+        <li><strong>Terrasse vue mer</strong><span>en plein cœur d'Ajaccio</span></li>
+        <li><strong>Pizzas &amp; brasserie</strong><span>midi et soir</span></li>
+        <li><strong>Cocktails</strong><span>jusqu'à 2 h</span></li>
+        <li><strong>Menu enfant</strong><span>pour toute la famille</span></li>
+      </ul>
+    </section>
+
+    <!-- CARTE -->
+    <section class="menu" id="carte" aria-labelledby="carte-title">
+      <div class="section-head reveal">
+        <p class="eyebrow">À table</p>
+        <h2 id="carte-title">La carte</h2>
+        <p class="notice">Carte d'exemple pour la maquette : plats et prix <strong>à confirmer</strong> avec le restaurant.</p>
+      </div>
+
+      <div class="menu-tabs" role="tablist" aria-label="Rubriques de la carte">
+        <button role="tab" aria-selected="true" aria-controls="m-pizzas" id="t-pizzas">Pizzas</button>
+        <button role="tab" aria-selected="false" aria-controls="m-partager" id="t-partager" tabindex="-1">À partager</button>
+        <button role="tab" aria-selected="false" aria-controls="m-brasserie" id="t-brasserie" tabindex="-1">Brasserie</button>
+        <button role="tab" aria-selected="false" aria-controls="m-desserts" id="t-desserts" tabindex="-1">Desserts</button>
+        <button role="tab" aria-selected="false" aria-controls="m-enfant" id="t-enfant" tabindex="-1">Enfants</button>
+      </div>
+
+      <div class="menu-body">
+        <div class="menu-photo" style="background-image: url(images/pizza.jpg)" role="img" aria-label="Pizza sortie du four"></div>
+
+        <div class="menu-panels">
+          <ul class="dishes" role="tabpanel" id="m-pizzas" aria-labelledby="t-pizzas">
+            <li><span class="dish">Margherita</span><span class="price">12 €</span><span class="desc">Tomate, mozzarella fior di latte, basilic frais</span></li>
+            <li><span class="dish">La Corse</span><span class="price">16 €</span><span class="desc">Tomate, coppa, brocciu, olives, huile d'olive de l'île</span></li>
+            <li><span class="dish">La Lamparo</span><span class="price">17 €</span><span class="desc">Fruits de mer, ail, persil, citron</span></li>
+            <li><span class="dish">Quatre fromages</span><span class="price">15 €</span><span class="desc">Mozzarella, gorgonzola, chèvre, tomme corse</span></li>
+            <li><span class="dish">Reine</span><span class="price">14 €</span><span class="desc">Tomate, jambon, champignons, mozzarella</span></li>
+          </ul>
+          <ul class="dishes" role="tabpanel" id="m-partager" aria-labelledby="t-partager" hidden>
+            <li><span class="dish">Planche corse</span><span class="price">18 €</span><span class="desc">Charcuterie et fromages de l'île, pain grillé</span></li>
+            <li><span class="dish">Tapas du moment</span><span class="price">9 €</span><span class="desc">Selon l'arrivage, à partager à l'apéritif</span></li>
+            <li><span class="dish">Poulet frit croustillant</span><span class="price">13 €</span><span class="desc">Sauce maison</span></li>
+            <li><span class="dish">Frites maison</span><span class="price">5 €</span><span class="desc">Fleur de sel</span></li>
+          </ul>
+          <ul class="dishes" role="tabpanel" id="m-brasserie" aria-labelledby="t-brasserie" hidden>
+            <li><span class="dish">Poisson du jour</span><span class="price">22 €</span><span class="desc">Légumes de saison, beurre citronné</span></li>
+            <li><span class="dish">Tartare de bœuf</span><span class="price">18 €</span><span class="desc">Préparé à la minute, frites maison</span></li>
+            <li><span class="dish">Burger du Lamparo</span><span class="price">17 €</span><span class="desc">Bœuf, tomme corse, oignons confits</span></li>
+            <li><span class="dish">Salade César</span><span class="price">15 €</span><span class="desc">Poulet, parmesan, croûtons, sauce César</span></li>
+          </ul>
+          <ul class="dishes" role="tabpanel" id="m-desserts" aria-labelledby="t-desserts" hidden>
+            <li><span class="dish">Fiadone</span><span class="price">7 €</span><span class="desc">Gâteau corse au brocciu et citron</span></li>
+            <li><span class="dish">Tiramisu maison</span><span class="price">7 €</span><span class="desc">Mascarpone, café</span></li>
+            <li><span class="dish">Café gourmand</span><span class="price">9 €</span><span class="desc">Trois douceurs du moment</span></li>
+          </ul>
+          <ul class="dishes" role="tabpanel" id="m-enfant" aria-labelledby="t-enfant" hidden>
+            <li><span class="dish">Menu enfant</span><span class="price">12 €</span><span class="desc">Mini pizza ou poulet frites, dessert, boisson (jusqu'à 10 ans)</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TERRASSE -->
+    <section class="split" id="terrasse" aria-labelledby="terrasse-title">
+      <div class="split-img reveal" style="background-image: url(images/terrasse.jpg)" role="img" aria-label="La terrasse en journée, face à la mer"></div>
+      <div class="split-text reveal">
+        <p class="eyebrow">Terrasse &amp; ambiance</p>
+        <h2 id="terrasse-title">La mer pour horizon</h2>
+        <p>Au pied du Diamant, la terrasse regarde la baie d'Ajaccio. Café en terrasse le matin, déjeuner à l'ombre, apéritif au coucher du soleil, puis musique et cocktails tard dans la soirée.</p>
+        <ol class="timeline">
+          <li><time>7 h</time> Petit-déjeuner &amp; café en terrasse</li>
+          <li><time>12 h</time> Déjeuner face à la mer</li>
+          <li><time>18 h</time> Apéritif &amp; coucher de soleil</li>
+          <li><time>2 h</time> Dernier verre</li>
+        </ol>
+        <p class="small">Horaires indicatifs, <strong>à confirmer</strong>.</p>
+      </div>
+    </section>
+
+    <!-- COCKTAILS -->
+    <section class="cocktails" id="cocktails" aria-labelledby="cocktails-title">
+      <div class="cocktails-img reveal" style="background-image: url(images/cocktail.jpg)" role="img" aria-label="Cocktail mûre-basilic au coucher du soleil"></div>
+      <div class="cocktails-text reveal">
+        <p class="eyebrow">Le bar</p>
+        <h2 id="cocktails-title">Des cocktails qu'on vient chercher</h2>
+        <p>« Excellents cocktails » : c'est ce que Google retient des avis laissés par les clients. Au coucher du soleil, face à la baie, ils prennent tout leur sens.</p>
+        <ul class="drinks">
+          <li class="signature"><span class="dish">Mûre &amp; basilic</span><span class="tag">Signature</span><span class="desc">Fruité, frais, herbacé</span></li>
+          <li><span class="dish">Spritz</span><span class="desc">L'incontournable de l'apéritif</span></li>
+          <li><span class="dish">Myrte tonic</span><span class="desc">Liqueur de myrte corse, tonic, agrumes</span></li>
+          <li><span class="dish">Mojito</span><span class="desc">Menthe fraîche, citron vert</span></li>
+          <li><span class="dish">Sans alcool du moment</span><span class="desc">Pour les petits et les grands</span></li>
+        </ul>
+        <p class="small">Carte d'exemple, <strong>à confirmer</strong>. L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p>
+      </div>
+    </section>
+
+    <!-- GALERIE -->
+    <section class="gallery" aria-label="Ambiance en images">
+      <div class="g g1 reveal" style="background-image: url(images/tapas.jpg)" role="img" aria-label="Planche de tapas et charcuterie corse"></div>
+      <div class="g g2 reveal" style="background-image: url(images/bar.jpg)" role="img" aria-label="Le bar le soir"></div>
+      <div class="g g3 reveal" style="background-image: url(images/hero.jpg)" role="img" aria-label="La terrasse au coucher du soleil"></div>
+    </section>
+
+    <!-- INFOS -->
+    <section class="infos" id="infos" aria-labelledby="infos-title">
+      <div class="section-head reveal">
+        <p class="eyebrow">Nous trouver</p>
+        <h2 id="infos-title">Horaires &amp; accès</h2>
+      </div>
+
+      <div class="infos-grid">
+        <div class="card reveal">
+          <h3>Horaires</h3>
+          <p class="status-line"><span class="status" data-status>Ouvert tous les jours</span></p>
+          <table class="hours">
+            <tbody>
+              <tr><th scope="row">Lundi – Dimanche</th><td>7 h – 2 h</td></tr>
+            </tbody>
+          </table>
+          <p class="small">Horaires relevés sur les annuaires publics, <strong>à confirmer</strong>.</p>
+        </div>
+
+        <div class="card reveal">
+          <h3>Adresse</h3>
+          <address>
+            Brasserie Le Lamparo<br>
+            Diamant, 1 boulevard Pascal Rossini<br>
+            20000 Ajaccio
+          </address>
+          <div class="card-actions">
+            <a class="btn btn-small btn-dark" href="https://www.google.com/maps/search/?api=1&amp;query=Brasserie+Le+Lamparo+1+Boulevard+Pascal+Rossini+Ajaccio" target="_blank" rel="noopener">Itinéraire Google Maps</a>
+            <a class="btn btn-small btn-line" href="https://waze.com/ul?ll=41.9186,8.7378&amp;navigate=yes" target="_blank" rel="noopener">Waze</a>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3>Réservation</h3>
+          <p>Réservez votre table par téléphone, en terrasse ou en salle.</p>
+          <a class="phone" href="tel:+33495271255">04 95 27 12 55</a>
+          <p class="small">Numéro <strong>à confirmer</strong> (deux numéros circulent sur les annuaires).</p>
+        </div>
+      </div>
+
+      <div class="map reveal" id="map">
+        <p>Le plan est affiché par OpenStreetMap. Il ne se charge que si vous le demandez.</p>
+        <button class="btn btn-dark" type="button" data-load-map>Afficher le plan</button>
+      </div>
+    </section>
+
+    <!-- APPEL FINAL -->
+    <section class="cta">
+      <h2>Une table face à la mer ce soir ?</h2>
+      <a class="btn btn-gold btn-big" href="tel:+33495271255">Appeler le Lamparo</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="brand-name">Le Lamparo</p>
+    <p>Diamant, 1 boulevard Pascal Rossini · 20000 Ajaccio · <a href="tel:+33495271255">04 95 27 12 55</a></p>
+    <p class="small"><strong>Maquette de démonstration</strong>, réalisée sans lien avec l'établissement. Contenus et prix d'exemple, à confirmer. Ce site ne dépose aucun cookie et ne collecte aucune donnée.</p>
+    <p class="small">Images d'illustration (non contractuelles). Polices Cormorant Garamond &amp; Inter (licence SIL OFL).</p>
+  </footer>
+
+  <!-- Barre d'action fixe sur téléphone -->
+  <nav class="mobile-bar" aria-label="Actions rapides">
+    <a href="tel:+33495271255"><span aria-hidden="true">☎</span> Appeler</a>
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=Brasserie+Le+Lamparo+1+Boulevard+Pascal+Rossini+Ajaccio" target="_blank" rel="noopener"><span aria-hidden="true">➤</span> Itinéraire</a>
+    <a href="#carte"><span aria-hidden="true">☰</span> Carte</a>
+  </nav>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
